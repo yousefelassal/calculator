@@ -166,3 +166,21 @@ button {
         width: 80%;
     }
   }
+
+    @media screen and (max-width: 500px){
+        .container{
+            width: 90%;
+        }
+    }
+
+    @media screen and (min-width: 811px){
+        .container{
+            width: 50%;
+        }
+    }
+
+    @media screen and (min-width: 1200px){
+        .container{
+            width: 25%;
+        }
+    }
