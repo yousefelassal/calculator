@@ -134,6 +134,33 @@ button {
     margin-bottom: 2vh;
   }
 
+  .screen__output{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2vh;
+    padding:0;
+    align-items: flex-end;
+  }
+
+  .screen__output--current{
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #e8e8e8;
+        margin:0;
+        padding:0;
+        height: 5vh;
+  }
+
+    .screen__output--previous{
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: #e8e8e8;
+        margin:0;
+        padding:0;
+        height:10vh;
+    }
+
   @media screen and (max-width: 810px){
     .container{
         width: 80%;
