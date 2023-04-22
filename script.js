@@ -1,15 +1,6 @@
 const buttons = document.querySelectorAll('.button');
 let screenOutput = document.querySelector('.screen__output');
 
-// buttons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         console.log('Button clicked');
-//         console.log(screenCurrent);
-//         // screenCurrent.textContent = button.textContent;
-
-//     });
-// });
-
 let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;

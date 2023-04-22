@@ -124,14 +124,12 @@ body{
     justify-content: right;
     align-items: center;
     padding: 0 4vh;
-    /* box-shadow: inset 2px 2px 15px -6px rgba(0,0,0,0.75); */
     margin: 2vh;
     font-size: 2.5rem;
     font-weight: bold;
     background: #99a883;
     box-shadow: 0 5px 20px 0.05px #130f0a inset, 5px 0 10px -4px #130f0a inset, -0.5px 0 3px 1px #130f0a inset, 0 0 0 2px rgba(0,0,0,1), 0 65px 50px -10px rgba(0,0,0,-0.05);
     color: #e8e8e8;
-    /* border: 3px solid rgb(0, 0, 0); */
     font-family: 'Digital-7', sans-serif;
     z-index: 2;
 }
@@ -207,31 +205,10 @@ button {
     display:flex;
     flex-direction: column;
     justify-content: space-around;
-    /* gap: 2vh; */
     padding:0;
     align-items: flex-end;
     font-family: 'Digital-7', sans-serif;
   }
-
-  /* .screen__output--current{
-        font-size: 1.2rem;
-        font-weight: 500;
-        color: #e8e8e8;
-        margin:0;
-        padding:0;
-        height: 5vh;
-        font-family: 'digital-7', sans-serif;
-  }
-
-    .screen__output--previous{
-        font-size: 2.5rem;
-        font-weight: 500;
-        color: #e8e8e8;
-        margin:0;
-        padding:0;
-        height:10vh;
-        font-family: 'digital-7', sans-serif;
-    } */
 
   @media screen and (max-width: 810px){
     .container{
