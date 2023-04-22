@@ -85,10 +85,11 @@ body{
   z-index: -1;
 }
 
-.row{
-    width: 100%;
-    height: 30%;
+.column{
+    width: 30%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
@@ -103,10 +104,6 @@ body{
   font-style: italic;
   font-size: 0.8rem;
   font-weight: bold;
-}
-
-.bta3etelshams{
-
 }
 
 .header{
@@ -134,31 +131,32 @@ body{
     background: #99a883;
     box-shadow: 0 5px 20px 0.05px #130f0a inset, 5px 0 10px -4px #130f0a inset, -0.5px 0 3px 1px #130f0a inset, 0 0 0 2px rgba(0,0,0,1), 0 65px 50px -10px rgba(0,0,0,-0.05);
     color: #e8e8e8;
-    border: 3px solid rgb(0, 0, 0);
+    /* border: 3px solid rgb(0, 0, 0); */
     font-family: 'Digital-7', sans-serif;
-    
+    z-index: 2;
 }
 
 .buttons{
-    width: 100%;
+    width: 95%;
     height: 70%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 3.5vh;
 }
 
 button {
-    background: #f8fdff;
+    background: #e2e3e5;
     font-family: inherit;
     padding: 0.6em 1.3em;
     font-weight: 900;
     font-size: 18px;
     border: 2px solid rgb(237, 251, 255);
-    border-radius: 50%;
+    border-radius: 20%;
     box-shadow: 0.1em 0.1em;
-    height: 60px;
-    width: 60px;
+    height: 10vh;
+    width: 11vh;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -176,43 +174,29 @@ button {
   }
 
   .button--operator{
-    /* background: #5dc9f4; */
-    /* background: rgb(55,247,255);
-    background: linear-gradient(144deg, rgba(55,247,255,1) 0%, rgba(138,231,255,1) 24%, rgba(247,248,255,1) 75%, rgba(247,254,255,1) 100%); */
-    background: rgb(171, 217, 227);
-    /* background: linear-gradient(22deg, rgba(55,247,255,1) 0%, rgba(138,231,255,1) 24%, rgba(247,248,255,1) 75%, rgba(247,254,255,1) 100%); */
-    border: 2px solid rgb(198, 243, 255);
-    color: #00415b; 
+    background: #f8fdff;
+    border: 2px solid rgb(237, 251, 255);
   }
 
+  .button--add{
+    height: 120px;
+    border-radius: 2vh;
+  }
   
   .button--equal{
-    /* background: #0c4358;
-    border: 2px solid rgb(0, 49, 62);
-    color: #e3e3e3;  */
-    background: rgb(89, 178, 196);
-    /* background: linear-gradient(22deg, rgba(55,247,255,1) 0%, rgba(138,231,255,1) 24%, rgba(247,248,255,1) 75%, rgba(247,254,255,1) 100%); */
-    border: 2px solid rgb(99, 190, 215);
-    color: #00415b; 
+    background: #f8fdff;
+    border: 2px solid rgb(237, 251, 255);
   }
-
-  .button-delete{
-    background: #e3e3e3;
-  }
-
-  
 
   .button--ac{
-    background: #ffe600;
-    border: 2px solid rgb(255, 243, 115);
+    background: #d19b9b;
+    border: 2px solid #e1acac;
     color: #000000; 
   }
 
   .button--percent, .button--sign{
-    background: rgb(255,232,55);
-    background: linear-gradient(24deg, rgba(255,232,55,1) 0%, rgba(255,250,138,1) 35%, rgba(247,248,255,1) 81%, rgba(247,254,255,1) 100%);
-    border: 2px solid rgb(255, 248, 171);
-    color: #6e6100; 
+    background: #f8fdff;
+    border: 2px solid rgb(237, 251, 255);
   }
 
   .row:last-child{
