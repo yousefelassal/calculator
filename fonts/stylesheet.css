@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Eurostile Extended';
+    src: url('EurostileExtended-Black.eot');
+    src: url('EurostileExtended-Black.eot?#iefix') format('embedded-opentype'),
+        url('EurostileExtended-Black.woff2') format('woff2'),
+        url('EurostileExtended-Black.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Digital-7';
+    src: url('Digital-7.eot');
+    src: url('Digital-7.eot?#iefix') format('embedded-opentype'),
+        url('Digital-7.woff2') format('woff2'),
+        url('Digital-7.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Eurostile Extended';
+    src: url('EurostileExtended-Roman.eot');
+    src: url('EurostileExtended-Roman.eot?#iefix') format('embedded-opentype'),
+        url('EurostileExtended-Roman.woff2') format('woff2'),
+        url('EurostileExtended-Roman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Eurostile Extended';
+    src: url('EurostileExtended-Black.eot');
+    src: url('EurostileExtended-Black.eot?#iefix') format('embedded-opentype'),
+        url('EurostileExtended-Black.woff2') format('woff2'),
+        url('EurostileExtended-Black.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
