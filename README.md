@@ -3,4 +3,5 @@
 <h1>Calculator</h1>
 <p>JavaScript Calculator</p>
 <p><a href="https://www.theodinproject.com/paths/foundations/courses/foundations">Foundation</a></p>
+<p><a href="https://www.theodinproject.com/lessons/foundations-calculator">Project Requirements</a></p>
 </div>
