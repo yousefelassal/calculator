@@ -5,7 +5,7 @@
 // let subtract = (a, b) => a - b;
 // let multiply = (a, b) => a * b;
 // let divide = (a, b) =>{
-//     if(b === 0){
+//     if(b == 0){
 //         return 80085;
 //     } else {
 //         let ans = a / b;
@@ -47,7 +47,7 @@
 //         let type = button.dataset.type;
 //         let value = button.dataset.value;
 //         if(type == 'number'){
-//             if(screenOutput.textContent === '0'){
+//             if(screenOutput.textContent == '0'){
 //                 screenOutput.textContent = value;
 //             } else {
 //                 screenOutput.textContent += value;
@@ -98,12 +98,45 @@ window.addEventListener('keydown', function(e){
 function updateDisplay() {
     const display = document.getElementById('display');
     display.innerText = displayValue;
-    if(displayValue.length > 9) {
-        display.innerText = displayValue.substring(0, 9);
+    if(displayValue.length > 15) {
+        display.innerText = displayValue.substring(0, 15);
     }
 }
   
 updateDisplay();
+
+// function clickButton() {
+//     for(let i = 0; i < buttons.length; i++) {
+//         let type = buttons[i].dataset.type;
+//         let value = buttons[i].dataset.value;
+//         buttons[i].addEventListener('click', function() {
+//             if(type == 'number') {
+//                 inputOperand(value);
+//                 updateDisplay();
+//             } else if(type == 'operator') {
+//                 inputOperator(value);
+//             } else if(type == 'equals') {
+//                 inputEquals();
+//                 updateDisplay();
+//                 console.log(updateDisplay());
+//             } else if(type == 'decimal') {
+//                 inputDecimal(value);
+//                 updateDisplay();
+//             } else if(type == 'percent') {
+//                 inputPercent(displayValue);
+//                 updateDisplay();
+//             } else if(type == 'sign') {
+//                 inputSign(displayValue);
+//                 updateDisplay();
+//             } else if(type == 'clear') {
+//                 clearDisplay();
+//                 updateDisplay();
+//             }
+//         })
+//     }
+// }
+
+// clickButton();
 
 buttons.forEach(button => {
     let type = button.dataset.type;
@@ -114,7 +147,7 @@ buttons.forEach(button => {
             updateDisplay();
         } else if(type == 'operator') {
             inputOperator(value);
-        } else if(type == '=') {
+        } else if(type == 'equals') {
             inputEquals();
             updateDisplay();
         } else if(type == 'decimal') {
@@ -161,8 +194,10 @@ function inputOperator(operator) {
         secondOperand = displayValue;
         result = operate(Number(firstOperand), Number(secondOperand), firstOperator);
         displayValue = roundAccurately(result, 15).toString();
+        console.log(displayValue);
         firstOperand = displayValue;
         result = '';
+        updateDisplay();
     } else if(firstOperator != '' && secondOperator != '') {
         //6th click - new secondOperator
         secondOperand = displayValue;
@@ -171,6 +206,7 @@ function inputOperator(operator) {
         displayValue = roundAccurately(result, 15).toString();
         firstOperand = displayValue;
         result = '';
+        updateDisplay();
     } else { 
         //2nd click - handles first operator input
         firstOperator = operator;
@@ -180,13 +216,14 @@ function inputOperator(operator) {
 
 function inputEquals() {
     //hitting equals doesn't display undefined before operate()
-    if(firstOperator === '') {
+    if(firstOperator == '') {
         displayValue = displayValue;
     } else if(secondOperator != '') {
         //handles final result
         secondOperand = displayValue;
         result = operate(Number(firstOperand), Number(secondOperand), secondOperator);
-        if(result === '80085') {
+        console.log(result);
+        if(result == '80085') {
             displayValue = '80085';
         } else {
             displayValue = roundAccurately(result, 15).toString();
@@ -200,7 +237,7 @@ function inputEquals() {
         //handles first operation
         secondOperand = displayValue;
         result = operate(Number(firstOperand), Number(secondOperand), firstOperator);
-        if(result === '80085') {
+        if(result == '80085') {
             displayValue = '80085';
         } else {
             displayValue = roundAccurately(result, 15).toString();
@@ -214,7 +251,7 @@ function inputEquals() {
 }
 
 function inputDecimal(dot) {
-    if(displayValue === firstOperand || displayValue === secondOperand) {
+    if(displayValue == firstOperand || displayValue == secondOperand) {
         displayValue = '0';
         displayValue += dot;
     } else if(!displayValue.includes(dot)) {
@@ -247,14 +284,15 @@ function inputBackspace() {
 }
 
 function operate(x, y, op) {
-    if(op === '+') {
+    if(op == '+') {
+        console.log(x + y);
         return x + y;
-    } else if(op === '-') {
+    } else if(op == '-') {
         return x - y;
-    } else if(op === '*') {
+    } else if(op == '*') {
         return x * y;
-    } else if(op === '/') {
-        if(y === 0) {
+    } else if(op == '/') {
+        if(y == 0) {
             return '80085';
         } else {
         return x / y;
