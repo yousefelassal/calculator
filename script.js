@@ -1,61 +1,267 @@
-const buttons = document.querySelectorAll('.button');
-let screenOutput = document.querySelector('.screen__output');
+// const buttons = document.querySelectorAll('.button');
+// let screenOutput = document.querySelector('.screen__output');
 
-let add = (a, b) => a + b;
-let subtract = (a, b) => a - b;
-let multiply = (a, b) => a * b;
-let divide = (a, b) =>{
-    if(b === 0){
-        return 80085;
-    } else {
-        return a / b;
-    }
-};
-let percent = (a) => a / 100;
-let negate = (a) => a * -1;
+// let add = (a, b) => a + b;
+// let subtract = (a, b) => a - b;
+// let multiply = (a, b) => a * b;
+// let divide = (a, b) =>{
+//     if(b === 0){
+//         return 80085;
+//     } else {
+//         let ans = a / b;
+//         return Math.round(ans *1000)/1000;
+//     }
+// };
 
-let operate = (operator, a, b) => {
-    switch(operator){
-        case '+':
-            return add(a, b);
-        case '-':
-            return subtract(a, b);
-        case '*':
-            return multiply(a, b);
-        case '/':
-            return divide(a, b);
-        case '%':
-            return percent(a);
-        case '+/-':
-            return negate(a);
-    }
-}
+// let percent = (a) => a / 100;
+// let negate = (a) => a * -1;
 
-let previousValue = 0;
-let currentValue = 0;
-let operator = '';
+// let operate = (operator, a, b) => {
+//     switch(operator){
+//         case '+':
+//             return add(a, b);
+//         case '-':
+//             return subtract(a, b);
+//         case '*':
+//             return multiply(a, b);
+//         case '/':
+//             return divide(a, b);
+//     }
+// }
 
+// let convert = (convertor, a) => {
+//     switch(convertor){
+//         case '%':
+//             return percent(a);
+//         case '+/-':
+//             return negate(a);
+//     }
+// }
+
+// let previousValue = 0;
+// let currentValue = 0;
+// let operator = '';
 
 // buttons.forEach(button => {
 //     button.addEventListener('click', () => {
-//         if(button.dataset.type === 'number'){
-//             if(screenCurrent.textContent === '0'){
-//                 screenCurrent.textContent = button.dataset.value;
+//         let type = button.dataset.type;
+//         let value = button.dataset.value;
+//         if(type == 'number'){
+//             if(screenOutput.textContent === '0'){
+//                 screenOutput.textContent = value;
 //             } else {
-//                 screenCurrent.textContent += button.dataset.value;
+//                 screenOutput.textContent += value;
 //             }
-//         } else if(button.dataset.type === 'operator'){
-//             operator = button.dataset.value;
-//             previousValue = Number(screenCurrent.textContent);
-//             screenPrevious.textContent = `${previousValue} ${operator}`;
-//             screenCurrent.textContent = '0';
-//         } else if(button.dataset.type === 'equal'){
-//             currentValue = Number(screenCurrent.textContent);
-//             screenCurrent.textContent = operate(operator, previousValue, currentValue);
-//             screenPrevious.textContent = '';
-//         } else if(button.dataset.type === 'clear'){
-//             screenCurrent.textContent = '0';
-//             screenPrevious.textContent = '';
+//         } else if(type == 'operator'){
+//             if(operator == ''){
+//                 previousValue = Number(screenOutput.textContent);
+//                 operator = value;
+//                 screenOutput.textContent = previousValue;
+//             } else {
+//                 currentValue = Number(screenOutput.textContent);
+//                 previousValue = operate(operator, previousValue, currentValue);
+//                 operator = value;
+//                 screenOutput.textContent = previousValue;
+//             }
+//         } else if(type == 'convertor'){
+//             currentValue = Number(screenOutput.textContent);
+//             currentValue = convert(value, currentValue);
+//             screenOutput.textContent = currentValue;
+//         } else if(type == '='){
+//             currentValue = Number(screenOutput.textContent);
+//             screenOutput.textContent = operate(operator, previousValue, currentValue);
+//             operator = '';
+//             previousValue = 0;
+//             currentValue = 0;
+//         } else if(type == 'clear'){
+//             screenOutput.textContent = '0';
+//             previousValue = 0;
+//             currentValue = 0;
+//             operator = '';
 //         }
-//     });
+//     })
 // });
+
+let displayValue = '0';
+let firstOperand = '';
+let secondOperand = '';
+let firstOperator = '';
+let secondOperator = '';
+let result = '';
+const buttons = document.querySelectorAll('.button');
+
+window.addEventListener('keydown', function(e){
+    const key = document.querySelector(`button[data-key='${e.keyCode}']`);
+    key.click();
+});
+
+function updateDisplay() {
+    const display = document.getElementById('display');
+    display.innerText = displayValue;
+    if(displayValue.length > 9) {
+        display.innerText = displayValue.substring(0, 9);
+    }
+}
+  
+updateDisplay();
+
+buttons.forEach(button => {
+    let type = button.dataset.type;
+    let value = button.dataset.value;
+    button.addEventListener('click', () => {
+        if(type == 'number') {
+            inputOperand(value);
+            updateDisplay();
+        } else if(type == 'operator') {
+            inputOperator(value);
+        } else if(type == '=') {
+            inputEquals();
+            updateDisplay();
+        } else if(type == 'decimal') {
+            inputDecimal(value);
+            updateDisplay();
+        } else if(type == 'percent') {
+            inputPercent(displayValue);
+            updateDisplay();
+        } else if(type == 'sign') {
+            inputSign(displayValue);
+            updateDisplay();
+        } else if(type == 'clear') {
+            clearDisplay();
+            updateDisplay();
+        }
+    })
+});
+
+function inputOperand(operand) {
+    if(firstOperator == '') {
+        if(displayValue == '0') {
+            //1st click - handles first operand input
+            displayValue = operand;
+        } else if(displayValue == firstOperand) {
+            //starts new operation after inputEquals()
+            displayValue = operand;
+        } else {
+            displayValue += operand;
+        }
+    } else {
+        //3rd/5th click - inputs to secondOperand
+        if(displayValue == firstOperand) {
+            displayValue = operand;
+        } else {
+            displayValue += operand;
+        }
+    }
+}
+
+function inputOperator(operator) {
+    if(firstOperator != '' && secondOperator == '') {
+        //4th click - handles input of second operator
+        secondOperator = operator;
+        secondOperand = displayValue;
+        result = operate(Number(firstOperand), Number(secondOperand), firstOperator);
+        displayValue = roundAccurately(result, 15).toString();
+        firstOperand = displayValue;
+        result = '';
+    } else if(firstOperator != '' && secondOperator != '') {
+        //6th click - new secondOperator
+        secondOperand = displayValue;
+        result = operate(Number(firstOperand), Number(secondOperand), secondOperator);
+        secondOperator = operator;
+        displayValue = roundAccurately(result, 15).toString();
+        firstOperand = displayValue;
+        result = '';
+    } else { 
+        //2nd click - handles first operator input
+        firstOperator = operator;
+        firstOperand = displayValue;
+    }
+}
+
+function inputEquals() {
+    //hitting equals doesn't display undefined before operate()
+    if(firstOperator === '') {
+        displayValue = displayValue;
+    } else if(secondOperator != '') {
+        //handles final result
+        secondOperand = displayValue;
+        result = operate(Number(firstOperand), Number(secondOperand), secondOperator);
+        if(result === '80085') {
+            displayValue = '80085';
+        } else {
+            displayValue = roundAccurately(result, 15).toString();
+            firstOperand = displayValue;
+            secondOperand = '';
+            firstOperator = '';
+            secondOperator = '';
+            result = '';
+        }
+    } else {
+        //handles first operation
+        secondOperand = displayValue;
+        result = operate(Number(firstOperand), Number(secondOperand), firstOperator);
+        if(result === '80085') {
+            displayValue = '80085';
+        } else {
+            displayValue = roundAccurately(result, 15).toString();
+            firstOperand = displayValue;
+            secondOperand = '';
+            firstOperator = '';
+            secondOperator = '';
+            result = '';
+        }
+    }
+}
+
+function inputDecimal(dot) {
+    if(displayValue === firstOperand || displayValue === secondOperand) {
+        displayValue = '0';
+        displayValue += dot;
+    } else if(!displayValue.includes(dot)) {
+        displayValue += dot;
+    } 
+}
+
+function inputPercent(num) {
+    displayValue = (num/100).toString();
+}
+
+function inputSign(num) {
+    displayValue = (num * -1).toString();
+}
+
+function clearDisplay() {
+    displayValue = '0';
+    firstOperand = '';
+    secondOperand = '';
+    firstOperator = '';
+    secondOperator = '';
+    result = '';
+}
+
+function inputBackspace() {
+    if(firstOperand != '') {
+        firstOperand = '';
+        updateDisplay();
+    }
+}
+
+function operate(x, y, op) {
+    if(op === '+') {
+        return x + y;
+    } else if(op === '-') {
+        return x - y;
+    } else if(op === '*') {
+        return x * y;
+    } else if(op === '/') {
+        if(y === 0) {
+            return '80085';
+        } else {
+        return x / y;
+        }
+    }
+}
+
+function roundAccurately(num, places) {
+    return parseFloat(Math.round(num + 'e' + places) + 'e-' + places);
+}
